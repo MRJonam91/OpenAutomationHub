@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "github-release-telegram",
+  "name": "Release GitHub su Telegram",
+  "description": "Legge l'ultima release di un repository GitHub pubblico e la invia a una chat Telegram quando lo esegui.",
+  "platform": "n8n",
+  "version": "1.0.0",
+  "categories": ["GitHub", "Telegram"],
+  "compatibility": { "platformVersion": ">=1.60.0" },
+  "credentials": [
+    {
+      "service": "Telegram Bot",
+      "type": "telegramApi",
+      "required": true,
+      "instructions": "Crea un bot Telegram, registra il token come credenziale Telegram API in n8n e scegli una chat autorizzata."
+    }
+  ],
+  "risk": {
+    "level": "medium",
+    "actions": ["read", "send"],
+    "notes": "L'esecuzione invia un messaggio alla chat Telegram configurata. La chiamata GitHub legge dati pubblici."
+  },
+  "install": [
+    "Importa workflow.json dal menu del workflow in n8n.",
+    "Apri il nodo Leggi release GitHub e sostituisci n8n-io/n8n nell'URL con il repository pubblico che vuoi seguire.",
+    "Apri il nodo Invia su Telegram, collega la tua credenziale Telegram API e sostituisci INSERISCI_CHAT_ID con l'ID della chat.",
+    "Esegui manualmente il workflow e controlla il messaggio prima di aggiungere una pianificazione."
+  ]
+}

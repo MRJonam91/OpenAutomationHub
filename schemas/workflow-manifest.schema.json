@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openautomationhub.dev/schemas/workflow-manifest/v1.json",
+  "title": "Open Automation Hub workflow manifest",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "description", "platform", "version", "categories", "compatibility", "credentials", "risk", "install"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 3 },
+    "description": { "type": "string", "minLength": 10 },
+    "platform": { "enum": ["n8n", "make", "node-red", "other"] },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$" },
+    "categories": { "type": "array", "minItems": 1, "items": { "type": "string" }, "uniqueItems": true },
+    "compatibility": {
+      "type": "object",
+      "required": ["platformVersion"],
+      "properties": { "platformVersion": { "type": "string", "minLength": 1 } },
+      "additionalProperties": false
+    },
+    "credentials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["service", "type", "required", "instructions"],
+        "properties": {
+          "service": { "type": "string" },
+          "type": { "type": "string" },
+          "required": { "type": "boolean" },
+          "instructions": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "install": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 5 } },
+    "risk": {
+      "type": "object",
+      "required": ["level", "actions"],
+      "properties": {
+        "level": { "enum": ["low", "medium", "high", "critical"] },
+        "actions": {
+          "type": "array",
+          "items": { "enum": ["read", "write", "send", "publish", "delete", "execute-code", "access-secrets"] },
+          "uniqueItems": true
+        },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

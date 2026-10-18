@@ -1,0 +1,26 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# JavaScript / TypeScript
+node_modules/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,28 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  alpha:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run validate:catalog
+      - run: npm run build
+      - name: Core size and tracked data guard
+        shell: bash
+        run: |
+          lines=$(find src scripts -type f \( -name '*.js' -o -name '*.ts' -o -name '*.tsx' -o -name '*.mjs' \) ! -name '*.test.*' -print0 | xargs -0 cat | wc -l)
+          test "$lines" -lt 1500
+          if git ls-files | grep -Ei '(^|/)(\.env|node_modules|dist|data|vault)/|\.(db|sqlite|pem|p12|pfx)$'; then
+            echo 'Unexpected local data tracked'
+            exit 1
+          fi

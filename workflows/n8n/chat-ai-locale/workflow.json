@@ -1,0 +1,37 @@
+{
+  "name": "Chat AI locale con Ollama",
+  "active": false,
+  "nodes": [
+    {
+      "id": "a1b4eb5e-43c1-4c1d-90d5-c04d4b23c001",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [240, 260],
+      "parameters": {}
+    },
+    {
+      "id": "a1b4eb5e-43c1-4c1d-90d5-c04d4b23c002",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [480, 260],
+      "parameters": {}
+    },
+    {
+      "id": "a1b4eb5e-43c1-4c1d-90d5-c04d4b23c003",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [500, 480],
+      "parameters": { "model": "llama3.2:latest", "options": {} }
+    }
+  ],
+  "connections": {
+    "Chat Trigger": { "main": [[{ "node": "Basic LLM Chain", "type": "main", "index": 0 }]] },
+    "Ollama Chat Model": { "ai_languageModel": [[{ "node": "Basic LLM Chain", "type": "ai_languageModel", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": []
+}

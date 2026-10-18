@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "chat-ai-locale",
+  "name": "Chat AI locale con Ollama",
+  "description": "Una chat n8n che risponde usando un modello Ollama nella tua infrastruttura.",
+  "platform": "n8n",
+  "version": "1.0.0",
+  "categories": ["AI", "Contenuti"],
+  "compatibility": { "platformVersion": ">=1.60.0" },
+  "credentials": [
+    {
+      "service": "Ollama",
+      "type": "ollamaApi",
+      "required": true,
+      "instructions": "Crea una credenziale Ollama in n8n e indica l'URL della tua istanza Ollama."
+    }
+  ],
+  "risk": {
+    "level": "medium",
+    "actions": ["send"],
+    "notes": "Il testo della chat viene inviato all'istanza Ollama configurata nella credenziale."
+  },
+  "install": [
+    "Importa workflow.json dal menu del workflow in n8n.",
+    "Apri il nodo Ollama Chat Model e collega la tua credenziale Ollama.",
+    "Verifica che il modello llama3.2 sia disponibile oppure selezionane uno installato.",
+    "Prova la chat nell'editor prima di attivare il workflow."
+  ]
+}
