@@ -6,6 +6,6 @@
 - [x] `npm run validate:catalog`: 2 workflow, 0 errori, 0 avvisi / warnings.
 - [x] `npm run build`: build di produzione riuscita / production build passed.
 - [x] Controllo dei file candidati e della storia Git per segreti / Scan candidate files and Git history for secrets.
-- [ ] CI remota e visibilità GitHub verificate / Remote CI and visibility verified.
+- [x] CI remota riuscita, commit e visibilità pubblica GitHub verificati / Remote CI passed; commit and public visibility verified.
 
 **IT / EN:** Questa è una release sorgente per prove locali; nessun workflow viene eseguito dall'app. / This is a source release for local trials; the app does not execute workflows.
